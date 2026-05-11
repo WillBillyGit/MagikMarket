@@ -6,6 +6,8 @@
 import { Sparkles, Terminal, Activity, FlaskConical, Beaker, BookOpen, Search, Zap, Wallet } from 'lucide-react';
 import { createThirdwebClient } from "thirdweb";
 import { ThirdwebProvider, useConnectModal, useActiveAccount } from "thirdweb/react";
+import { motion, AnimatePresence } from 'motion/react';
+import { useState, useEffect } from 'react';
 
 const client = createThirdwebClient({
   clientId: "bc9658e39250af7a8f3346d7904a43b2", // Using a placeholder client ID for demo purposes
@@ -33,15 +35,15 @@ function PotionApp() {
           </div>
           <div className="flex flex-col">
             <h1 className="font-serif text-3xl font-semibold tracking-wider uppercase text-white/95">Magik Market</h1>
-            <span className="font-mono text-[10px] text-purple-400 uppercase tracking-[0.3em]">Phase: Celestial Calibration</span>
+            <span className="font-mono text-[10px] text-purple-400 uppercase tracking-[0.3em]">Phase: Celestial Bridge & Essence Vaults</span>
           </div>
         </div>
 
         <div className="flex items-center gap-8">
           {/* Magik Mascot Image Replacement for Nav */}
-          <div className="h-16 w-32 rounded-2xl border border-glass-border overflow-hidden bg-glass backdrop-blur-xl shadow-2xl relative group">
+          <div className="h-56 w-56 rounded-3xl border border-glass-border overflow-hidden bg-glass backdrop-blur-xl shadow-2xl relative group">
             <img 
-              src="/src/assets/images/regenerated_image_1778459087673.png" 
+              src="/src/assets/images/regenerated_image_1778495707740.png" 
               alt="Magik Market Mascot" 
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               referrerPolicy="no-referrer"
@@ -71,45 +73,26 @@ function PotionApp() {
       </header>
 
       {/* Main Content Grid */}
-      <main className="relative z-10 flex-1 grid grid-cols-12 gap-8">
-        {/* Left Panel: Alchemy Status */}
-        <div className="col-span-3 flex flex-col gap-6">
-          <div className="bg-glass backdrop-blur-2xl border border-glass-border rounded-[2rem] p-6 flex-1 shadow-2xl">
-            <div className="flex justify-between items-center mb-10">
-              <h3 className="text-[11px] uppercase tracking-[0.3em] text-white/40 font-medium">Manifestations</h3>
-              <Activity size={14} className="text-purple-400" />
-            </div>
-            <div className="space-y-8">
-              {[
-                { name: 'Crystal Resonance', val: 72, col: 'bg-purple-500 shadow-[0_0_10px_rgba(168,85,247,0.4)]' },
-                { name: 'Essence Extraction', val: 45, col: 'bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.4)]' },
-                { name: 'Void Synthesis', val: 12, col: 'bg-teal-500 shadow-[0_0_10px_rgba(20,184,166,0.4)]' }
-              ].map((item, idx) => (
-                <div key={idx} className="group cursor-default">
-                  <div className="text-[11px] font-medium mb-3 flex justify-between">
-                    <span className="text-white/80">{item.name}</span>
-                    <span className="font-mono text-[9px] text-white/30">{item.val}%</span>
-                  </div>
-                  <div className="w-full h-[3px] bg-white/5 rounded-full overflow-hidden">
-                    <div className={`h-full ${item.col} transition-all duration-1000`} style={{ width: `${item.val}%` }} />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-          
-          <div className="bg-glass backdrop-blur-2xl border border-glass-border rounded-[2rem] p-6 h-36 flex items-center justify-center shadow-xl">
-            <div className="text-center">
-              <div className="font-mono text-3xl font-light text-white mb-2 tracking-tighter">1,024.8</div>
-              <div className="text-[9px] uppercase tracking-[0.3em] text-white/30 font-medium font-mono">Mana Flux Intensity</div>
-            </div>
-          </div>
-        </div>
-
+      <main className="relative z-10 flex-1 flex flex-col items-center">
         {/* Center Panel: Swap Engine */}
-        <div className="col-span-6 bg-glass backdrop-blur-2xl border border-glass-border rounded-[3rem] relative flex flex-col items-center justify-center overflow-hidden shadow-2xl">
+        <div 
+          className="w-full bg-glass backdrop-blur-2xl border relative flex flex-col items-center justify-start p-12 overflow-visible shadow-2xl font-magic text-center text-[#5ef13a] border-[#4ee44c] min-h-[900px]"
+          style={{ borderStyle: 'groove', borderRadius: '4px' }}
+        >
           <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,rgba(139,92,246,0.08)_0%,transparent_60%)]" />
           
+          <div className="relative z-20 w-full flex flex-col items-center mb-10">
+            <h2 className="text-4xl tracking-[0.1em] uppercase mb-6 leading-tight">Multi-Chain Transmutation Bridge</h2>
+            <div className="space-y-4 max-w-xl mx-auto">
+              <p className="text-sm opacity-90 leading-relaxed">
+                You can now bridge your essence across the celestial realms—from the bustling streets of Ethereum to the lightning-fast currents of Polygon and beyond.
+              </p>
+              <p className="text-[10px] opacity-60 uppercase tracking-[0.25em] font-mono">
+                Cross-Chain Alchemy. Simply select your "Source Realm" and your "Destination Plane" within the interface to begin the ritual.
+              </p>
+            </div>
+          </div>
+
           <div className="relative z-20 w-full flex flex-col items-center justify-center scale-95 md:scale-100">
             <iframe
               src="https://swap.dodoex.io/magikmarket?full-screen=true&theme=dark&backgroundColor=050308&primaryColor=8b5cf6&textColor=ffffff&hideLogo=true&feeRate=0.003"
@@ -121,28 +104,6 @@ function PotionApp() {
           </div>
         </div>
 
-        {/* Right Panel: Streams and Actions */}
-        <div className="col-span-3 flex flex-col gap-6">
-          <div className="bg-glass backdrop-blur-2xl border border-glass-border rounded-[2rem] p-7 flex-1 shadow-2xl">
-            <div className="flex justify-between items-center mb-8">
-              <h3 className="text-[11px] uppercase tracking-[0.3em] text-white/40 font-medium">Telemetric Stream</h3>
-              <Terminal size={14} className="text-white/40" />
-            </div>
-            <div className="font-mono text-[10px] leading-relaxed space-y-4 opacity-50">
-              <div className="flex gap-3"><span>[10:42]</span> <span className="text-white/80">Crystal resonance stable</span></div>
-              <div className="flex gap-3"><span>[10:45]</span> <span className="text-purple-400 font-medium">leyline_37 detected</span></div>
-              <div className="flex gap-3"><span>[10:48]</span> <span className="text-white/80">Calibrating optics...</span></div>
-              <div className="flex gap-3"><span>[10:52]</span> <span className="text-white/80">Flux variance nominal</span></div>
-              <div className="flex gap-3 text-emerald-400 font-medium"><span>[10:54]</span> <span>Manual override engaged</span></div>
-              <div className="flex gap-3"><span>[10:57]</span> <span className="text-white/80">Resonator cooldown: 4m</span></div>
-            </div>
-          </div>
-
-          <button className="h-20 rounded-[1.8rem] bg-white text-black font-bold flex items-center justify-center gap-4 transition-all hover:bg-white/90 hover:scale-[0.98] active:scale-95 group shadow-[0_10px_40px_rgba(255,255,255,0.1)]">
-            <FlaskConical size={20} className="group-hover:rotate-12 transition-transform" />
-            <span className="text-sm uppercase tracking-[0.25em]">Initiate Pulse</span>
-          </button>
-        </div>
       </main>
 
       {/* Footer Section */}
@@ -184,9 +145,5 @@ function PotionApp() {
 }
 
 export default function App() {
-  return (
-    <ThirdwebProvider>
-      <PotionApp />
-    </ThirdwebProvider>
-  );
+  return <PotionApp />;
 }
