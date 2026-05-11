@@ -9,9 +9,11 @@ import { ThirdwebProvider, useConnectModal, useActiveAccount } from "thirdweb/re
 import { motion, AnimatePresence } from 'motion/react';
 import { useState, useEffect } from 'react';
 
-const client = createThirdwebClient({
+export const client = createThirdwebClient({
   clientId: "bc9658e39250af7a8f3346d7904a43b2", // Using a placeholder client ID for demo purposes
 });
+
+import { AetherVault } from './components/AetherVault';
 
 function PotionApp() {
   const { connect, isConnecting } = useConnectModal();
@@ -104,6 +106,9 @@ function PotionApp() {
           </div>
         </div>
 
+        {/* Aether Vault Section */}
+        <AetherVault />
+
       </main>
 
       {/* Footer Section */}
@@ -145,5 +150,9 @@ function PotionApp() {
 }
 
 export default function App() {
-  return <PotionApp />;
+  return (
+    <ThirdwebProvider>
+      <PotionApp />
+    </ThirdwebProvider>
+  );
 }
