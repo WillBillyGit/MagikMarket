@@ -1,13 +1,52 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300&family=JetBrains+Mono:wght@300;500&family=Inter:wght@300;400;600;700&family=Yusei+Magic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=JetBrains+Mono:wght@300;500&family=Inter:wght@300;400;600;700&family=Yusei+Magic&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Cormorant Garamond", serif;
-  --font-mono: "JetBrains Mono", monospace;
-  --font-magic: "Yusei Magic", sans-serif;
+  --font-sans: "Bubblegum Sans", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Bubblegum Sans", serif;
+  --font-mono: "Bubblegum Sans", "JetBrains Mono", monospace;
+  --font-magic: "Bubblegum Sans", "Yusei Magic", sans-serif;
   
   --color-dark-void: #050308;
-  --color-glass: rgba(255, 255, 255, 0.03);
-  --color-glass-border: rgba(255, 255, 255, 0.08);
+  --color-glass: rgba(255, 255, 255, 0.04);
+  --color-glass-border: rgba(255, 255, 255, 0.1);
+  --color-aether-gold: #fbbf24;
+  --color-aether-purple: #8b5cf6;
+  --color-aether-green: #5ef13a;
+
+  @keyframes iridescent-glow {
+    0%, 100% { text-shadow: 0 0 8px #ff00e0, 2px 2px 10px #00e0ff, 0 0 15px rgba(251, 191, 36, 0.2); }
+    50% { text-shadow: 0 0 15px #00e0ff, -2px -2px 15px #ff00e0, 0 0 20px rgba(139, 92, 246, 0.4); }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { opacity: 0.5; filter: blur(40px); }
+    50% { opacity: 0.8; filter: blur(60px); }
+  }
+}
+
+@layer base {
+  body {
+    @apply font-sans bg-dark-void text-white overflow-x-hidden;
+    background: 
+      radial-gradient(circle at 20% 30%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(251, 191, 36, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 50% 50%, rgba(5, 3, 8, 1) 0%, rgba(10, 5, 20, 1) 100%);
+    font-family: "Bubblegum Sans", cursive;
+    min-height: 100vh;
+  }
+  
+  h1, h2, h3, h4, h5, h6, span, p, button, label, input, textarea, a, li, blockquote {
+    animation: iridescent-glow 4s ease-in-out infinite;
+  }
+  
+  /* Target elements that might be numeric or text containers that aren't p/span */
+  .glow-text {
+    animation: iridescent-glow 4s ease-in-out infinite;
+  }
 }
